@@ -1,0 +1,37 @@
+version: '3'
+services:
+    php-apache:
+        container_name: php-apache
+        build:
+            context: .
+            dockerfile: Dockerfile
+        depends_on:
+            - db
+        volumes:
+            - ./apache-vol:/var/www/html/
+        ports:
+            - 8000:80
+        networks:
+            - phpajax-network
+
+
+    db:
+        image: mysql:8.0
+        container_name: db
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: nahid123
+            MYSQL_DATABASE: crud
+            MYSQL_ROOT_USER: root
+            MYSQL_PASSWORD: nahid123
+        volumes:
+            - ./db-data:/docker-entrypoint-initdb.d
+
+        networks:
+            - phpajax-network
+networks:
+    phpajax-network:
+volumes:
+    apache-vol:
+    db-data:
+
