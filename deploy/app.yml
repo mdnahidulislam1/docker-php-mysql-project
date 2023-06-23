@@ -70,7 +70,7 @@ spec:
     spec:
       containers:
       - name: webserver
-        image: nahid003/test-pipeline:latest
+        image: nahid003/test-pipeline
         env:
         - name: MYSQL_HOST
           value: my-mysql-service
